@@ -4,6 +4,8 @@ __pycache__
 myvenv
 db.sqlite3
 /static
+/media
 .idea/
 .DS_Store
 /kitchen_shop/api/users/migrations
+/kitchen_shop/api/products/migrations
