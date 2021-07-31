@@ -5,21 +5,40 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = 'users.User'
 
+# CHANGE ON PRODUCTION
+# --------------------------------
 SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'xojiogell.pythonanywhere.com']
+ALLOWED_HOSTS = '*'
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://192.168.5.49:8080',
+)
+
+
+# The value of the SameSite flag on the session cookie.
+# This flag prevents cookies from being sent in cross-site requests,
+# thereby preventing CSRF attacks and making certain methods of stealing session cookies impossible.
+# SESSION_COOKIE_SAMESITE = 'None'
+# CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_DOMAIN = "127.0.0.1"
+CSRF_TRUSTED_ORIGINS = [
+    "192.168.5.49:8080",
+    "127.0.0.1:8000"
+]
+# --------------------------------
 
 THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
-    'drf_yasg',
 ]
 
 LOCAL_APPS = [
-    'kitchen_shop.api.users'
+    'kitchen_shop.api.users',
+    'kitchen_shop.api.products'
 ]
 
 INSTALLED_APPS = [
@@ -34,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -100,3 +120,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
