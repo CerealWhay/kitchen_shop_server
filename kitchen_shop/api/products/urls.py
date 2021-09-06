@@ -6,7 +6,7 @@ from kitchen_shop.api.products.views import (
 )
 
 router = routers.DefaultRouter()
-router.register('products', ProductsViewSet, basename='products')
+router.register('', ProductsViewSet, basename='products')
 router.register('categories', CategoriesViewSet, basename='categories')
 
 urlpatterns = router.urls

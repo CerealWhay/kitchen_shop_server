@@ -9,3 +9,4 @@ db.sqlite3
 .DS_Store
 /kitchen_shop/api/users/migrations
 /kitchen_shop/api/products/migrations
+/kitchen_shop/api/cart/migrations
