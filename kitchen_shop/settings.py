@@ -7,28 +7,31 @@ AUTH_USER_MODEL = 'users.User'
 
 # CHANGE ON PRODUCTION
 # --------------------------------
-SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
-
 DEBUG = True
-
-ALLOWED_HOSTS = '*'
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = (
-    'http://192.168.5.49:8080',
-)
-
-
-# The value of the SameSite flag on the session cookie.
-# This flag prevents cookies from being sent in cross-site requests,
-# thereby preventing CSRF attacks and making certain methods of stealing session cookies impossible.
-# SESSION_COOKIE_SAMESITE = 'None'
-# CSRF_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_DOMAIN = "127.0.0.1"
-CSRF_TRUSTED_ORIGINS = [
-    "192.168.5.49:8080",
-    "127.0.0.1:8000"
+SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
+ALLOWED_HOSTS = [
+    'xojiogell.pythonanywhere.com',
+    '127.0.0.1',
 ]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    # set here link to app (not api)
+    'http://192.168.5.49:8080',
+    'http://172.20.10.2:8080',
+    'http://localhost:8080',
+    # delete then
+]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+# CSRF_COOKIE_DOMAIN = "xojiogell.pythonanywhere.com"
+CSRF_COOKIE_DOMAIN = "127.0.0.1"
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_DOMAIN = "xojiogell.pythonanywhere.com"
+SESSION_COOKIE_DOMAIN = "127.0.0.1"
 # --------------------------------
 
 THIRD_PARTY_APPS = [
@@ -38,7 +41,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'kitchen_shop.api.users',
-    'kitchen_shop.api.products'
+    'kitchen_shop.api.products',
+    'kitchen_shop.api.cart'
 ]
 
 INSTALLED_APPS = [
@@ -51,11 +55,11 @@ INSTALLED_APPS = [
 ] + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

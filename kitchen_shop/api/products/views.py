@@ -30,9 +30,6 @@ class ProductsViewSet(ViewSet):
 
     @action(methods=('post',), detail=False)
     def get_products(self, request):
-        if not request.session or not request.session.session_key:
-            request.session.save()
-
         if request.data.get('category_slug'):
             category = get_object_or_404(Category, slug=request.data.get('category_slug'))
             products = Product.objects.filter(category=category)

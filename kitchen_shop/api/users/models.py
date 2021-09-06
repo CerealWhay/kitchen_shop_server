@@ -7,9 +7,16 @@ class User(AbstractUser):
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=200, null=True, blank=True)
-    email = models.CharField(max_length=200, null=True, blank=True)
-    sessionid = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    phone = models.CharField(max_length=17)
+
+    country = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    zip = models.CharField(max_length=50)
+
+    sessionid = models.CharField(max_length=200, default='', blank=False, unique=True)
 
     def __str__(self):
-        return self.sessionid
+        return self.email
