@@ -9,6 +9,7 @@ from kitchen_shop.api.products.models import Product, Category
 from kitchen_shop.api.products.serializers import (
     CategorySerializer,
     ProductSerializer,
+    ProductPreviewSerializer,
 )
 
 
@@ -28,22 +29,22 @@ class CategoriesViewSet(ViewSet):
 class ProductsViewSet(ViewSet):
     permission_classes = (permissions.AllowAny,)
 
-    @action(methods=('post',), detail=False)
+    @action(methods=('get',), detail=False)
     def get_products(self, request):
-        if request.data.get('category_slug'):
-            category = get_object_or_404(Category, slug=request.data.get('category_slug'))
+        if request.query_params.get('category_slug'):
+            category = get_object_or_404(Category, slug=request.query_params.get('category_slug'))
             products = Product.objects.filter(category=category)
         else:
             products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
+        serializer = ProductPreviewSerializer(products, many=True)
         response = serializer.data
         return Response(
             data=response, status=status.HTTP_200_OK
         )
 
-    @action(methods=('post',), detail=False)
+    @action(methods=('get',), detail=False)
     def get_selected_product(self, request):
-        product = get_object_or_404(Product, slug=request.data.get('slug'))
+        product = get_object_or_404(Product, slug=request.query_params.get('slug'))
         serializer = ProductSerializer(product)
         response = serializer.data
 

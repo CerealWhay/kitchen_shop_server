@@ -9,3 +9,10 @@ class CustomerSerializer(serializers.Serializer):
     country = serializers.CharField(required=False)
     city = serializers.CharField(required=False)
     zip = serializers.CharField(required=False)
+
+
+class AppealSerializer(serializers.Serializer):
+    name = serializers.CharField(required=False)
+    email = serializers.CharField(required=False)
+    phone = serializers.CharField(required=False)
+    message = serializers.CharField(required=False)

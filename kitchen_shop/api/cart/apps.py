@@ -2,6 +2,6 @@ from django.apps import AppConfig
 
 
 class CartConfig(AppConfig):
-    """Конфиг приложения users."""
+    """Конфиг приложения cart."""
     name = __package__
 

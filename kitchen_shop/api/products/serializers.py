@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
 
-class ProductNameSerializer(serializers.Serializer):
-    category = serializers.SlugRelatedField(required=False, slug_field='name', read_only=True)
+class ProductPreviewSerializer(serializers.Serializer):
     name = serializers.CharField(required=False)
     slug = serializers.SlugField(required=False)
     image = serializers.CharField(required=False)
