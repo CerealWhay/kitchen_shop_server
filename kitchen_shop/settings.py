@@ -37,12 +37,14 @@ SESSION_COOKIE_DOMAIN = "127.0.0.1"
 THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
+    'tinymce'
 ]
 
 LOCAL_APPS = [
     'kitchen_shop.api.users',
     'kitchen_shop.api.products',
-    'kitchen_shop.api.cart'
+    'kitchen_shop.api.cart',
+    'kitchen_shop.api.journal',
 ]
 
 INSTALLED_APPS = [
@@ -82,6 +84,12 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 WSGI_APPLICATION = 'kitchen_shop.wsgi.application'
 
