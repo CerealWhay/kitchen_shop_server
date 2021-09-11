@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,30 +8,23 @@ AUTH_USER_MODEL = 'users.User'
 
 # CHANGE ON PRODUCTION
 # --------------------------------
-DEBUG = True
+DEBUG = False
 SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
 ALLOWED_HOSTS = [
     'xojiogell.pythonanywhere.com',
-    '127.0.0.1',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    # set here link to app (not api)
-    'http://192.168.5.49:8080',
-    'http://172.20.10.2:8080',
-    'http://localhost:8080',
-    # delete then
+    'https://kitchen-shop.onrender.com',
 ]
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
-# CSRF_COOKIE_DOMAIN = "xojiogell.pythonanywhere.com"
 CSRF_COOKIE_DOMAIN = "127.0.0.1"
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'None'
-# SESSION_COOKIE_DOMAIN = "xojiogell.pythonanywhere.com"
 SESSION_COOKIE_DOMAIN = "127.0.0.1"
 # --------------------------------
 
@@ -48,16 +42,17 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-] + THIRD_PARTY_APPS + LOCAL_APPS
+                     'django.contrib.admin',
+                     'django.contrib.auth',
+                     'django.contrib.contenttypes',
+                     'django.contrib.sessions',
+                     'django.contrib.messages',
+                     'django.contrib.staticfiles',
+                 ] + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -133,3 +128,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
