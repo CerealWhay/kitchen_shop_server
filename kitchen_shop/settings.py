@@ -11,7 +11,7 @@ AUTH_USER_MODEL = 'users.User'
 DEBUG = False
 SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
 ALLOWED_HOSTS = [
-    'xojiogell.pythonanywhere.com',
+    'stark-spire-44281.herokuapp.com'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -21,11 +21,11 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_DOMAIN = "127.0.0.1"
+CSRF_COOKIE_DOMAIN = "stark-spire-44281.herokuapp.com"
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_DOMAIN = "127.0.0.1"
+SESSION_COOKIE_DOMAIN = "stark-spire-44281.herokuapp.com"
 # --------------------------------
 
 THIRD_PARTY_APPS = [
