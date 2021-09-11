@@ -8,7 +8,7 @@ AUTH_USER_MODEL = 'users.User'
 
 # CHANGE ON PRODUCTION
 # --------------------------------
-DEBUG = False
+DEBUG = True
 SECRET_KEY = 'django-insecure-ornt4+)j!&l$7k#&k68fc=vep0)avik3gdredq7qmxzzcv@h70'
 ALLOWED_HOSTS = [
     'stark-spire-44281.herokuapp.com'
