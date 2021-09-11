@@ -17,6 +17,7 @@ ALLOWED_HOSTS = [
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://kitchen-shop.onrender.com',
+    'https://stark-spire-44281.herokuapp.com',
 ]
 
 CSRF_COOKIE_SECURE = True
