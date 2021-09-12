@@ -20,6 +20,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://stark-spire-44281.herokuapp.com',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['stark-spire-44281.herokuapp.com']
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_DOMAIN = "stark-spire-44281.herokuapp.com"
